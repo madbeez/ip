@@ -35,7 +35,7 @@ public class Duke {
                             System.out.println("The list is empty.");
                         break;
                     }
-                    System.out.println(listCount + ".[" + item.getStatusIcon() + "] " + item.description);
+                    System.out.println(listCount + "." + item);
                     listCount++;
                 }
             }
@@ -45,16 +45,29 @@ public class Duke {
                 // The number of the task that is done
                 int doneTask = Integer.parseInt(input.replaceAll("[^0-9]", "")) - 1;
                 list[doneTask].markAsDone();
-                System.out.println("Nice! I've marked this task as done:\n" + "  ["
-                        + list[doneTask].getStatusIcon() + "] " +list[doneTask].getDescription());
+                System.out.println("Nice! I've marked this task as done:\n" + list[doneTask]);
             }
 
             // Add input as new task
             else {
-                list[count] = new Task(input);
+                if (input.contains("deadline")){
+                    int slashLocation = input.indexOf("/");
+                    list[count] = new Deadline(input.substring(input.indexOf("n") + 3,slashLocation),input.substring(slashLocation+1));
+                }
+
+                else if (input.contains("event")){
+                    int slashLocation = input.indexOf("/");
+                    list[count] = new Event(input.substring(input.indexOf("t") + 2,slashLocation),input.substring(slashLocation+1));
+                }
+
+                else {
+                    list[count] = new ToDo(input);
+                }
+
+                System.out.println("I've added: " + System.lineSeparator() + "  " + list[count]);
                 count++;
-                System.out.println("I've added: " + input);
                 System.out.println("Now you have " + count + " tasks in the list.");
+
             }
         }
     }
