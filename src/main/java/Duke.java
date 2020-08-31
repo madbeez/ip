@@ -13,7 +13,7 @@ public class Duke {
         String input;
         Task list[] = new Task[100];
 
-        System.out.println("Hi! My name is Bop!\n" + "How can I help you?");
+        System.out.println("Hi! My name is Duke!\n" + "How can I help you?");
 
         // Echo loops until "bye" is inputted
         while(true) {
@@ -53,7 +53,8 @@ public class Duke {
             else {
                 list[count] = new Task(input);
                 count++;
-                System.out.println("added: " + input);
+                System.out.println("I've added: " + input);
+                System.out.println("Now you have " + count + " tasks in the list.");
             }
         }
     }
