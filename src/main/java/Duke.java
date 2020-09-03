@@ -64,9 +64,9 @@ public class Duke {
                     list[count] = new ToDo(input);
                 }
 
-                System.out.println("I've added: " + System.lineSeparator() + "  " + list[count]);
+                System.out.println("I've added:" + System.lineSeparator() + "  " + list[count]);
                 count++;
-                System.out.println("Now you have " + count + " tasks in the list.");
+                System.out.println("Now you have " + count + " tasks     in the list.");
 
             }
         }
