@@ -1,10 +1,17 @@
+package duke;
+
 import java.util.Scanner;
+import duke.task.*;
+import duke.error.*;
 
 public class Duke {
+    static final int TASK_COUNT = 100;
+
     public static void main(String[] args) {
         int count = 0;
+
         String input;
-        Task taskList[] = new Task[100];
+        Task taskList[] = new Task[TASK_COUNT];
 
         printWelcomeMessage();
 
