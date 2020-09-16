@@ -1,8 +1,14 @@
 package duke;
 
+import duke.error.IllegalInputException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 import java.util.Scanner;
-import duke.task.*;
-import duke.error.*;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Duke {
     static final int TASK_COUNT = 100;
@@ -34,6 +40,7 @@ public class Duke {
                 } else {
                     count = addTask(count, input, taskList); // Add input as new task
                 }
+                saveTasks("saveFile.txt", taskList);
             } catch (IllegalInputException e) {
                 System.out.println("Input cannot be empty!");
             }
@@ -102,5 +109,20 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         */
+    }
+
+    // Saves the current list of tasks to a text file
+    private static void saveTasks(String filePath, Task[] taskList){
+        try{
+        FileWriter save = new FileWriter(filePath);
+            for (Task item : taskList){
+                save.write(item.toString() + System.lineSeparator());
+                save.flush();
+            }
+            save.close();
+        } catch (IOException e) {
+        System.out.println("Something went wrong: " + e.getMessage());
+        } catch (NullPointerException e) {
+        }
     }
 }
