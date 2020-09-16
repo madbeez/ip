@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 import duke.task.*;
 import duke.error.*;
 
@@ -8,10 +9,9 @@ public class Duke {
     static final int TASK_COUNT = 100;
 
     public static void main(String[] args) {
-        int count = 0;
 
         String input;
-        Task taskList[] = new Task[TASK_COUNT];
+        ArrayList<Task> taskList = new ArrayList<>();
 
         printWelcomeMessage();
 
@@ -31,8 +31,10 @@ public class Duke {
                     printList(taskList);
                 } else if (input.contains("done")) {
                     markAsDone(input, taskList);
-                } else {
-                    count = addTask(count, input, taskList); // Add input as new task
+                } else if (input.contains("delete")){
+                    deleteTask(input, taskList);
+                } else{
+                    addTask(input, taskList); // Add input as new task
                 }
             } catch (IllegalInputException e) {
                 System.out.println("Input cannot be empty!");
@@ -40,56 +42,61 @@ public class Duke {
         }
     }
 
-    private static int addTask(int count, String input, Task[] taskList) {
+    private static void addTask(String input, ArrayList<Task> taskList) {
         try {
             if (input.contains("deadline")) {
                 int slashLocation = input.indexOf("/");
-                taskList[count] = new Deadline(input.substring(input.indexOf("n") + 3, slashLocation), input.substring(slashLocation + 1));
+                taskList.add(new Deadline(input.substring(input.indexOf("n") + 3, slashLocation), input.substring(slashLocation + 1)));
             } else if (input.contains("event")) {
                 int slashLocation = input.indexOf("/");
-                taskList[count] = new Event(input.substring(input.indexOf("t") + 2, slashLocation), input.substring(slashLocation + 1));
+                taskList.add(new Event(input.substring(input.indexOf("t") + 2, slashLocation), input.substring(slashLocation + 1)));
             } else {
-                taskList[count] = new Todo(input);
+                taskList.add(new Todo(input));
             }
 
-            System.out.println("I've added:" + System.lineSeparator() + "  " + taskList[count]);
-            count++;
+            System.out.println("I've added:" + System.lineSeparator() + "  " + taskList.get(taskList.size()-1));
 
-            if (count > 1) {
-                System.out.println("Now you have " + count + " tasks in the list.");
+            if (taskList.size() > 1) {
+                System.out.println("Now you have " + taskList.size() + " tasks in the list.");
             } else {
-                System.out.println("Now you have " + count + " task in the list.");
+                System.out.println("Now you have " + taskList.size() + " task in the list.");
             }
 
         } catch (StringIndexOutOfBoundsException e) {
             System.out.println("Please put a slash in between the description and the date.");
         }
-
-        return count;
     }
 
-    private static void markAsDone(String input, Task[] taskList) {
+    private static void deleteTask(String input, ArrayList<Task> taskList){
+        try {
+            int chosenTask = Integer.parseInt(input.replaceAll("[^0-9]", "")) - 1;
+            System.out.println("Understood. I've removed this task:" + System.lineSeparator() + "  "
+                    + taskList.get(chosenTask) + System.lineSeparator() + "Now you have " + (taskList.size() - 1)
+                    + " tasks in the list.");
+            taskList.remove(taskList.get(chosenTask));
+        } catch (NumberFormatException e) {
+            System.out.println("You must enter the number of the task you want to delete.");
+        }
+    }
+
+    private static void markAsDone(String input, ArrayList<Task> taskList) {
         // The number of the task that is done
         try {
             int doneTask = Integer.parseInt(input.replaceAll("[^0-9]", "")) - 1;
-            taskList[doneTask].markAsDone();
-            System.out.println("Nice! I've marked this task as done:" + System.lineSeparator() + "  " + taskList[doneTask]);
+            taskList.get(doneTask).markAsDone();
+            System.out.println("Nice! I've marked this task as done:" + System.lineSeparator() + "  " + taskList.get(doneTask));
         } catch (NumberFormatException e) {
             System.out.println("You must enter the number of the task you want to mark as done.");
         }
     }
 
-    private static void printList(Task[] taskList) {
-        int listCount = 1;
-        for (Task item: taskList){
-            if (item == null) {
-                if (listCount == 1) {
-                    System.out.println("The list is empty.");
-                }
-                break;
+    private static void printList(ArrayList<Task> taskList) {
+        if (taskList.size() == 0) {
+            System.out.println("The list is empty.");
+        } else {
+            for (Task item: taskList) {
+                System.out.println((taskList.indexOf(item) + 1) + "." + item);
             }
-            System.out.println(listCount + "." + item);
-            listCount++;
         }
     }
 
