@@ -37,8 +37,10 @@ public class Duke {
                     markAsDone(input, taskList);
                 } else if (input.contains("delete")){
                     deleteTask(input, taskList);
-                } else{
+                } else if (input.contains("todo") | input.contains("deadline") | input.contains("event")){
                     addTask(input, taskList); // Add input as new task
+                } else {
+                    System.out.println("Please enter a valid command!");
                 }
                 saveTasks("saveFile.txt", taskList);
             } catch (IllegalInputException e) {
@@ -56,7 +58,7 @@ public class Duke {
                 int slashLocation = input.indexOf("/");
                 taskList.add(new Event(input.substring(input.indexOf("t") + 2, slashLocation), input.substring(slashLocation + 1)));
             } else {
-                taskList.add(new Todo(input));
+                taskList.add(new Todo(input.substring(input.indexOf(" ") + 1)));
             }
 
             System.out.println("I've added:" + System.lineSeparator() + "  " + taskList.get(taskList.size()-1));
