@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -50,11 +52,13 @@ public class Storage {
 
             } else {
                 String description = input.substring(input.indexOf(" ") + 1, input.indexOf("("));
-                String date = input.substring(input.indexOf(":") + 1, input.indexOf(")"));
+                LocalDate date = LocalDate.parse(input.substring(input.indexOf(":") + 1, input.indexOf(")")), DateTimeFormatter.ofPattern("MMM d yyyy"));
+                String parsedDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
                 if (input.charAt(1) == 'D'){
-                    newTask = new Deadline(description, date);
+                    newTask = new Deadline(description, parsedDate);
                 } else if (input.charAt(1) == 'E'){
-                    newTask = new Event(description, date);
+                    newTask = new Event(description, parsedDate);
                 }
             }
 

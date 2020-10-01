@@ -7,7 +7,9 @@ import duke.task.Task;
 
 import java.util.ArrayList;
 
-
+/**
+ * This command prints a list of tasks matching the keyword provided by the user
+ */
 public class FindCommand extends Command {
     private String input;
 
@@ -28,6 +30,7 @@ public class FindCommand extends Command {
         if (matches.isEmpty()){
             System.out.println("No matches found.");
         } else {
+            System.out.println("Here are the matching tasks for your search.");
             for (Task item : matches){
                 System.out.println(++index + ". " + item);
             }

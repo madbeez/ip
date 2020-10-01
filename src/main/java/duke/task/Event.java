@@ -3,8 +3,11 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 
+/**
+ * This represents an event
+ * Contains both description and the event's date
+ */
 public class Event extends Task{
     private LocalDate date;
 
@@ -20,9 +23,9 @@ public class Event extends Task{
     @Override
     public String toString() {
         try {
-            return "[D]" + super.toString() + "(at:" + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+            return "[E]" + super.toString() + "(at:" + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
         } catch (NullPointerException e) {
-            return "[D]" + super.toString() + "(at:N/A)";
+            return "[E]" + super.toString() + "(at:Jan 1 2099)";
         }
     }
 }
