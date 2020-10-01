@@ -4,6 +4,13 @@ import duke.command.*;
 import duke.error.DukeException;
 
 public class Parser {
+    /**
+     * Parses the input entered by the user and returns the command corresponding to the input
+     *
+     * @param fullCommand The input entered by the user
+     * @return the relevant command based on the input
+     * @throws DukeException
+     */
     public static Command parse(String fullCommand) throws DukeException{
         if (fullCommand.length() == 0) {
             throw new DukeException("Input cannot be empty!");
