@@ -10,13 +10,13 @@ import java.util.ArrayList;
 // Stores the task list and contains operations on the task list
 public class TaskList {
     private ArrayList<Task> taskList;
+
     public TaskList() {
         this.taskList = new ArrayList<>();
     }
     public TaskList(ArrayList<Task> taskList) {
         this.taskList = taskList;
     }
-
 
     public ArrayList<Task> getTasks() {
         return this.taskList;

@@ -7,7 +7,9 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
 
-
+/**
+ * This command adds the relevant tasks to the task list
+ */
 public class AddCommand extends Command{
     private String input;
 
