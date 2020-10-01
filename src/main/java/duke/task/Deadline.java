@@ -1,16 +1,28 @@
 package duke.task;
 
-public class Deadline extends Task {
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-    protected String by;
+public class Deadline extends Task {
+    private LocalDate date;
 
     public Deadline(String description, String by) {
         super(description);
-        this.by = by;
+        try {
+            this.date = LocalDate.parse(by);
+        } catch (DateTimeParseException e) {
+            System.out.println(e.getMessage());
+            this.date = null;
+        }
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by:" + by + ")";
+        try {
+            return "[D]" + super.toString() + "(by:" + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        } catch (NullPointerException e) {
+            return "[D]" + super.toString() + "(by:N/A)";
+        }
     }
 }
