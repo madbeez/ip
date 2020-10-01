@@ -48,12 +48,14 @@ public class Storage {
             if (input.charAt(1) == 'T'){
                 newTask = new Todo(input.substring(input.indexOf(" ") + 1));
 
-            } else if (input.charAt(1) == 'D'){
-                newTask = new Deadline(input.substring(input.indexOf(" ") + 1,input.indexOf("("))
-                        ,input.substring(input.indexOf(":") + 1,input.indexOf(")")));
-            } else if (input.charAt(1) == 'E'){
-                newTask = new Event(input.substring(input.indexOf(" ") + 1,input.indexOf("("))
-                        ,input.substring(input.indexOf(":") + 1,input.indexOf(")")));
+            } else {
+                String description = input.substring(input.indexOf(" ") + 1, input.indexOf("("));
+                String date = input.substring(input.indexOf(":") + 1, input.indexOf(")"));
+                if (input.charAt(1) == 'D'){
+                    newTask = new Deadline(description, date);
+                } else if (input.charAt(1) == 'E'){
+                    newTask = new Event(description, date);
+                }
             }
 
             taskList.add(newTask);
