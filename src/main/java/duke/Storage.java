@@ -1,6 +1,5 @@
 package duke;
 
-import duke.error.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -31,6 +30,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads a list of tasks from the chosen filepath
+     * @throws FileNotFoundException
+     */
     public ArrayList<Task> load() throws FileNotFoundException {
         File data = new File(filePath);
         ArrayList<Task> taskList = new ArrayList<>();
@@ -63,6 +66,11 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Saves the current list of tasks to the chosen filepath
+     *
+     * @param taskList The list of tasks to be saved
+     */
     public static void save(ArrayList<Task> taskList){
         try{
             FileWriter save = new FileWriter(filePath);

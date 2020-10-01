@@ -4,6 +4,9 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * This commands marks the selected task as done
+ */
 public class DoneCommand extends Command{
     private String input;
 

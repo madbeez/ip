@@ -1,5 +1,6 @@
 package duke;
 
+import duke.error.DukeException;
 import duke.task.Task;
 
 import java.util.ArrayList;
@@ -18,7 +19,11 @@ public class Ui {
         System.out.println("________________________________________");
     }
 
-
+    /**
+     * Prints the list of tasks
+     *
+     * @param taskList The list meant to be printed
+     */
     public void printList(TaskList taskList) {
         int index = 1;
         if (taskList.getSize() == 0) {
@@ -30,6 +35,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Reads the input from the user and returns it as a string
+     *
+     * @return the user input
+     */
     public String readCommand(){
         Scanner echo = new Scanner(System.in); // Scan user input
         String input = echo.nextLine();
@@ -40,6 +50,11 @@ public class Ui {
         System.out.println("Save file loaded successfully.");
     }
 
+    /**
+     * Prints the relevant error message for the encountered error
+     *
+     * @param errorMessage The error message
+     */
     public void printError(String errorMessage){
         System.out.println(errorMessage);
     }
