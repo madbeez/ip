@@ -15,8 +15,10 @@ public class Parser {
             return new DoneCommand(fullCommand);
         } else if (fullCommand.contains("delete")){
             return new DeleteCommand(fullCommand);
-        } else if (fullCommand.contains("todo") | fullCommand.contains("deadline") | fullCommand.contains("event")){
+        } else if (fullCommand.contains("todo") | fullCommand.contains("deadline") | fullCommand.contains("event")) {
             return new AddCommand(fullCommand);
+        } else if (fullCommand.contains("find")) {
+            return new FindCommand((fullCommand));
         } else {
             throw new DukeException("Please enter a valid command!");
         }
