@@ -16,13 +16,13 @@ Duke is an **app for scheduling and keeping track of various tasks, using a Comm
 ## Quick Start
 1. Ensure you have Java 11 or above installed in your Computer.
 
-2. Download the latest duke.jar.
+2. Download the latest ip.jar.
 
 3. Copy the file to the folder you want to use as the home folder for your program.
 
 4. Using the terminal, navigate to the location of the .jar file.
 
-5. Type "java -jar duke.jar" into the terminal and press enter.
+5. Type "java -jar ip.jar" into the terminal and press enter.
 
 6. If you have followed the above steps correctly, you should see a welcome message.
 
