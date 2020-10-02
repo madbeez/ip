@@ -25,7 +25,7 @@ public class Event extends Task{
         try {
             return "[E]" + super.toString() + "(at:" + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
         } catch (NullPointerException e) {
-            return "[E]" + super.toString() + "(at:Jan 1 2099)";
+            return "[E]" + super.toString() + "(at:Jan 1 2099)"; // Placeholder date
         }
     }
 }
