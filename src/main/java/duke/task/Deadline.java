@@ -27,7 +27,7 @@ public class Deadline extends Task {
         try {
             return "[D]" + super.toString() + "(by:" + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
         } catch (NullPointerException e) {
-            return "[D]" + super.toString() + "(by:Jan 1 2099)";
+            return "[D]" + super.toString() + "(by:Jan 1 2099)"; // Placeholder date
         }
     }
 }
