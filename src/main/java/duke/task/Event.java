@@ -16,16 +16,13 @@ public class Event extends Task{
         try {
             this.date = LocalDate.parse(at);
         } catch (DateTimeParseException e) {
-            this.date = null;
+            System.out.println(e.getMessage());
+            this.date = LocalDate.parse("2099-01-01"); // Placeholder date
         }
     }
 
     @Override
     public String toString() {
-        try {
-            return "[E]" + super.toString() + "(at:" + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
-        } catch (NullPointerException e) {
-            return "[E]" + super.toString() + "(at:Jan 1 2099)"; // Placeholder date
-        }
+        return "[E]" + super.toString() + "(at:" + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

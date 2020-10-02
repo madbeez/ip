@@ -17,17 +17,13 @@ public class Deadline extends Task {
             this.date = LocalDate.parse(by);
         } catch (DateTimeParseException e) {
             System.out.println(e.getMessage());
-            this.date = null;
+            this.date = LocalDate.parse("2099-01-01"); // Placeholder date
         }
     }
 
 
     @Override
     public String toString() {
-        try {
-            return "[D]" + super.toString() + "(by:" + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
-        } catch (NullPointerException e) {
-            return "[D]" + super.toString() + "(by:Jan 1 2099)"; // Placeholder date
-        }
+        return "[D]" + super.toString() + "(by:" + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
